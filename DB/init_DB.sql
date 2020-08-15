@@ -38,12 +38,21 @@ CREATE TABLE 'exams' (
     `name` VARCHAR(255) NOT NULL,
     `duration` TIME NOT NULL,
     `phone_number` VARCHAR(20),
-    `creation_time` DATE
+    `creation_time` DATE,
+    `client_id` INT(11) FOREIGN KEY REFERENCES `clients` (`id`)
 );
 
-LOCK TABLES `candidates` WRITE, `tests` WRITE, `test_centers` WRITE, `exams` WRITE, `clients` WRITE;
-INSERT INTO `candidates` (first_name, last_name, id_type, id_number) VALUES
-('Amanda', 'Johnson', 'drivers_license', 'DL109213'),
-('Brent', 'Ho', 'passport', 'Z209H892D');
-UNLOCK TABLES;
--- table
+-- tests table
+-- stores info of each test
+DROP TABLE IF EXISTS `tests`;
+CREATE TABLE 'tests' (
+    `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
+    `exam_id` INT(11) FOREIGN KEY REFERENCES `exams` (`id`),
+    `candidate_id` INT(11) FOREIGN KEY REFERENCES `candidates` (`id`),
+    `date` DATE NOT NULL,
+    `start_time` TIME NOT NULL,
+    `test_center_id` INT(11) FOREIGN KEY REFERENCES `test_centers` (`id`),
+    `status` ENUM(`Registered`, `Canceled`, `Checked in`, `In Progress`, `Completed`)
+);
+
+
