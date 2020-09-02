@@ -1,9 +1,14 @@
 from django.db import models
 
 class Candidate(models.Model):
+    ID_TYPES = (
+        ('passport', 'passport'),
+        ('drivers_license', 'drivers_license'),
+    )
+    #id=models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)
-    id_type = models.CharField(max_length=255)
+    id_type = models.CharField(max_length=255, choices=ID_TYPES)
     id_number = models.CharField(max_length=255)
     class Meta:
         constraints = [
