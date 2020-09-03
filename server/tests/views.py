@@ -10,12 +10,17 @@ from .serializers import CandidateSerializer
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 from rest_framework import mixins
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 class GenericAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
     serializer_class = CandidateSerializer
     queryset = Candidate.objects.all()
     lookup_field = 'id'
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     
     def get(self, request, id = None):
         if id:
