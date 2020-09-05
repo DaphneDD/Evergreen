@@ -12,6 +12,46 @@ from rest_framework import generics
 from rest_framework import mixins
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets
+from django.shortcuts import get_object_or_404
+
+class CandidateModelViewSet(viewsets.ModelViewSet):
+    serializer_class = CandidateSerializer
+    queryset = Candidate.objects.all()
+
+class CandidateGenericViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
+    serializer_class = CandidateSerializer
+    queryset = Candidate.objects.all()
+
+
+class CandidateViewSet(viewsets.ViewSet):
+    def list(self, request):
+        candidates = Candidate.objects.all()
+        serializer = CandidateSerializer(candidates, many=True)
+        return Response(serializer.data)
+
+    def create(self, request):
+        serializer = CandidateSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def retrieve(self, request, pk=None):
+        queryset = Candidate.objects.all()
+        candidate = get_object_or_404(queryset, pk=pk)
+        serializer = CandidateSerializer(candidate)
+        return Response(serializer.data)
+
+    def update(self, request, pk=None):
+        candidate = Candidate.objects.get(pk=pk)
+        serializer = CandidateSerializer(candidate, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class GenericAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin):
