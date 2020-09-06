@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 #from rest_framework.parsers import JSONParser
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from .models import Candidate
-from .serializers import CandidateSerializer
+from .models import Candidate, Test #Client, Exam, Test_Center
+from .serializers import CandidateSerializer, TestSerializer
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 from rest_framework import mixins
@@ -14,6 +15,17 @@ from rest_framework.authentication import SessionAuthentication, TokenAuthentica
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
+
+@api_view(['GET'])
+def test_list(request):
+    params = request.GET
+    try:
+        tests = Test.objects.filter(test_center_id=params['test_center'], date=params['date'])
+        serializer = TestSerializer(tests, many=True)
+        return Response(serializer.data)
+    except:
+        return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
+
 
 class CandidateModelViewSet(viewsets.ModelViewSet):
     serializer_class = CandidateSerializer
@@ -77,12 +89,6 @@ class GenericAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.Crea
     def delete(self, request, id):
         return self.destroy(request, id)
 
-def test_list(request):
-    if request.method == 'GET':
-        data = request.GET
-    else:
-        data = {"message": "This route only handles get request"}
-    return JsonResponse(data)
 
 
 class CandidateListAPIView(APIView):
