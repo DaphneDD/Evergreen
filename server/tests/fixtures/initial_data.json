@@ -1,0 +1,260 @@
+[
+    {
+        "model":"tests.candidate",
+        "pk":1,
+        "fields": {
+            "first_name": "Amanda",
+            "last_name": "Johnson",
+            "id_type":"drivers_license",
+            "id_number":"DL109213"
+        }
+    },
+    {
+        "model":"tests.candidate",
+        "pk":2,
+        "fields": {
+            "first_name": "Lilian",
+            "last_name": "Abu",
+            "id_type":"drivers_license",
+            "id_number":"DL0291242"
+        }
+    },
+    {
+        "model":"tests.candidate",
+        "pk":3,
+        "fields": {
+            "first_name": "Julian",
+            "last_name": "Wang",
+            "id_type":"drivers_license",
+            "id_number":"DL2901483"
+        }
+    },
+    {
+        "model":"tests.candidate",
+        "pk":4,
+        "fields": {
+            "first_name": "Fei",
+            "last_name": "Xie",
+            "id_type":"passport",
+            "id_number":"A9201923"
+        }
+    },
+    {
+        "model":"tests.candidate",
+        "pk":5,
+        "fields": {
+            "first_name": "Fatima",
+            "last_name": "Said",
+            "id_type":"drivers_license",
+            "id_number":"DL1092214"
+        }
+    },
+    {
+        "model":"tests.candidate",
+        "pk":6,
+        "fields": {
+            "first_name": "Brent",
+            "last_name": "Ho",
+            "id_type":"passport",
+            "id_number":"Z209H892D"
+        }
+    },
+    {
+        "model":"tests.test_center",
+        "pk":1,
+        "fields": {
+            "name": "Maple Grove",
+            "address": "200 California Dr, Maple Grove",
+            "number_of_stations": 4
+        }
+    },
+    {
+        "model":"tests.test_center",
+        "pk":2,
+        "fields": {
+            "name": "Apple Creek",
+            "address": "12 Forest Ave, Apple Creek",
+            "number_of_stations": 4
+        }
+    },
+    {
+        "model":"tests.client",
+        "pk":1,
+        "fields": {
+            "name": "Drawing Circle Society",
+            "address": "1 Circular Dr, Sphere County",
+            "phone_number": "1-672-132-1241",
+            "create_time":"2020-08-10"
+        }
+    },
+    {
+        "model":"tests.client",
+        "pk":2,
+        "fields": {
+            "name": "Catfish Fishing Association",
+            "address": "20 Riverside Ave, River City",
+            "phone_number": "1-230-185-9302",
+            "create_time":"2020-08-12"
+        }
+    },
+    {
+        "model":"tests.exam",
+        "pk":1,
+        "fields": {
+            "name": "Drawing Perfect Circles",
+            "duration": "01:30:00",
+            "description": "drawing two perfect circles using a mouse",
+            "client_id":1
+        }
+    },
+    {
+        "model":"tests.exam",
+        "pk":2,
+        "fields": {
+            "name": "Drawing Concentric Circles",
+            "duration": "06:00:00",
+            "description": "drawing as many concentric circles as possible using a mouse",
+            "client_id":1
+        }
+    },
+    {
+        "model":"tests.exam",
+        "pk":3,
+        "fields": {
+            "name": "Catfish Fishing License Exam",
+            "duration": "03:00:00",
+            "description": "Licensing exam to test candidate's knowledge of catfish fishing",
+            "client_id":2
+        }
+    },
+    {
+        "model":"tests.exam",
+        "pk":4,
+        "fields": {
+            "name": "Catfish Tools License Exam",
+            "duration": "10:00:00",
+            "description": "Licensing exam to make legal tools for catfish fishing",
+            "client_id":2
+        }
+    },
+    {
+        "model":"tests.test",
+        "pk":1,
+        "fields": {
+            "exam_id": 1,
+            "candidate_id": 1,
+            "date": "2020-10-13",
+            "start_time":"08:00:00",
+            "test_center_id":1,
+            "status": "Registered"
+        }
+    },
+    {
+        "model":"tests.test",
+        "pk":2,
+        "fields": {
+            "exam_id": 2,
+            "candidate_id": 6,
+            "date": "2020-10-13",
+            "start_time":"09:30:00",
+            "test_center_id":1,
+            "status": "Registered"
+        }
+    },
+    {
+        "model":"tests.test",
+        "pk":3,
+        "fields": {
+            "exam_id": 3,
+            "candidate_id": 4,
+            "date": "2020-10-13",
+            "start_time":"09:00:00",
+            "test_center_id":1,
+            "status": "Registered"
+        }
+    },
+    {
+        "model":"tests.test",
+        "pk":4,
+        "fields": {
+            "exam_id": 4,
+            "candidate_id": 3,
+            "date": "2020-10-13",
+            "start_time":"08:00:00",
+            "test_center_id":1,
+            "status": "Registered"
+        }
+    },
+    {
+        "model":"tests.test",
+        "pk":5,
+        "fields": {
+            "exam_id": 1,
+            "candidate_id": 2,
+            "date": "2020-10-13",
+            "start_time":"13:00:00",
+            "test_center_id":1,
+            "status": "Registered"
+        }
+    },
+    {
+        "model":"tests.test",
+        "pk":6,
+        "fields": {
+            "exam_id": 3,
+            "candidate_id": 5,
+            "date": "2020-10-13",
+            "start_time":"13:00:00",
+            "test_center_id":1,
+            "status": "Registered"
+        }
+    },
+    {
+        "model":"tests.test",
+        "pk":7,
+        "fields": {
+            "exam_id": 2,
+            "candidate_id": 1,
+            "date": "2020-10-13",
+            "start_time":"08:00:00",
+            "test_center_id":2,
+            "status": "Registered"
+        }
+    },
+    {
+        "model":"tests.test",
+        "pk":8,
+        "fields": {
+            "exam_id": 2,
+            "candidate_id": 5,
+            "date": "2020-10-19",
+            "start_time":"08:00:00",
+            "test_center_id":2,
+            "status": "Registered"
+        }
+    },
+    {
+        "model":"tests.test",
+        "pk":9,
+        "fields": {
+            "exam_id": 4,
+            "candidate_id": 1,
+            "date": "2020-10-19",
+            "start_time":"08:00:00",
+            "test_center_id":2,
+            "status": "Registered"
+        }
+    },
+    {
+        "model":"tests.test",
+        "pk":10,
+        "fields": {
+            "exam_id": 1,
+            "candidate_id": 4,
+            "date": "2020-10-19",
+            "start_time":"11:00:00",
+            "test_center_id":2,
+            "status": "Registered"
+        }
+    }
+]
