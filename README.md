@@ -1,4 +1,5 @@
 # Evergreen
+Contributors: Daphne Dong, Yuan Shen, Ye Sun
 
 To Run Server Locally:
 1. Install Python 3.8
